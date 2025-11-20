@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple Bill — Buggu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrap" role="main" aria-labelledby="appTitle">
+        <header>
+            <h1 id="appTitle">Bill Calculator</h1>
+        </header>
+
+        <form id="billForm" class="card">
+            <label for="prev">Previous reading</label>
+            <input id="prev" name="prev" type="number" min="0" step="any" placeholder="e.g. 1023" required>
+
+            <label for="curr">Current reading</label>
+            <input id="curr" name="curr" type="number" min="0" step="any" placeholder="e.g. 1058" required>
+
+            <label for="rate">Rate per unit (Rs.)</label>
+            <input id="rate" name="rate" type="number" min="0" step="any" value="6.1" placeholder="currency per unit">
+
+            <div class="buttons">
+                <button type="button" id="calc">Calculate</button>
+                <button type="button" id="clear">Clear</button>
+            </div>
+
+            <div id="error" role="status" aria-live="polite" class="error"></div>
+        </form>
+
+        <aside class="preview card" aria-live="polite" aria-label="Bill summary">
+            <div class="preview-head">
+                <div><strong>Summary</strong></div>
+                <button id="copyBtn" title="Copy summary to clipboard" aria-label="Copy summary to clipboard"
+                    class="copy-btn">
+                    <!-- simple clipboard SVG -->
+                    <svg width="30" height="30" viewBox="-13 -7 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path
+                            d="M16 4H8C6.9 4 6 4.9 6 6V7H8V6H16V18H8V17H6V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V6C18 4.9 17.1 4 16 4Z"
+                            fill="currentColor" />
+                        <path
+                            d="M9 8H14C14.55 8 15 8.45 15 9V19C15 19.55 14.55 20 14 20H9C8.45 20 8 19.55 8 19V9C8 8.45 8.45 8 9 8Z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+            <div class="row"><span>Previous Reading:</span><strong id="prevunits">—</strong></div>
+            <div class="row"><span>Current Reading:</span><strong id="currentunits">—</strong></div>
+            <div class="row"><span>Units Consumed:</span><strong id="totalunits">—</strong></div>
+            <div class="row"><span>Rate per unit (in Rs.):</span><strong id="unitrate">—</strong></div>
+            <div class="row"><span>Electricity (Units * Rate) in Rs. :</span><strong id="totalelectricity">—</strong></div>
+            <div class="row"><span>Water (Fixed) in Rs. :</span><strong id="totalwater">—</strong></div>
+            <div class="row"><span>Total (Electricity + Water) in Rs. :</span><strong id="totalbill">—</strong></div>
+        </aside>
+
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
