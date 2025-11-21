@@ -12,6 +12,12 @@
     <main class="wrap" role="main" aria-labelledby="appTitle">
         <header>
             <h1 id="appTitle">Bill Calculator</h1>
+            <p style="color: red;">
+                <br>
+                ** Total units consumed is rounded off
+                <br>
+                ** Total electricity bill is rounded off
+            </p>
         </header>
 
         <form id="billForm" class="card">
@@ -49,8 +55,8 @@
                     </svg>
                 </button>
             </div>
-            <div class="row"><span>Previous Reading:</span><strong id="prevunits">—</strong></div>
-            <div class="row"><span>Current Reading:</span><strong id="currentunits">—</strong></div>
+            <div class="row"><span>Previous Reading (units):</span><strong id="prevunits">—</strong></div>
+            <div class="row"><span>Current Reading (units):</span><strong id="currentunits">—</strong></div>
             <div class="row"><span>Units Consumed:</span><strong id="totalunits">—</strong></div>
             <div class="row"><span>Rate per unit (in Rs.):</span><strong id="unitrate">—</strong></div>
             <div class="row"><span>Electricity (Units * Rate) in Rs. :</span><strong id="totalelectricity">—</strong></div>

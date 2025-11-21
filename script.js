@@ -67,9 +67,9 @@ function validate(prev, curr, rate) {
 // main calculation function
 function calculate(prev, curr, rate) {
     const waterFixed = 200;
-    const units = curr - prev;
-    const totalElect = units * rate;
-    const total = (units * rate) + waterFixed;
+    const units = Math.round(curr - prev);
+    const totalElect = Math.round(units * rate);
+    const total = totalElect+ waterFixed;
 
     prevunits.textContent = prev;
     currentunits.textContent = curr;
@@ -105,6 +105,7 @@ async function copySummary() {
     prevunit = prevunits.textContent;
     currentunit = currentunits.textContent;
     totalunit = totalunits.textContent;
+    perunit = unitrate.textContent;
     electricity = totalelectricity.textContent;
     water = totalwater.textContent;
     bill = totalbill.textContent;
@@ -113,7 +114,7 @@ async function copySummary() {
     Previous Reading: ${prevunit}\n
     Current Reading: ${currentunit}\n
     Units Consumed: ${totalunit}\n
-    Rate per unit (Rs.): ${rate}\n
+    Rate per unit (Rs.): ${perunit}\n
     Electricity (Units * Rate) in Rs.: ₹${electricity}\n
     Water (Fixed) in Rs.: ₹${water}\n
     Total (Electricity + Water) in Rs.: ₹${bill}
@@ -129,9 +130,14 @@ async function copySummary() {
         await navigator.clipboard.writeText(text);
         // small visual feedback
         copyBtn.textContent = '✓';
-        error.innerText = '';
+        error.innerText = 'Summary copied to clipboard.';
         setTimeout(() => {
-            copyBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 4H8C6.9 4 6 4.9 6 6V7H8V6H16V18H8V17H6V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V6C18 4.9 17.1 4 16 4Z" fill="currentColor"/><path d="M9 8H14C14.55 8 15 8.45 15 9V19C15 19.55 14.55 20 14 20H9C8.45 20 8 19.55 8 19V9C8 8.45 8.45 8 9 8Z" fill="currentColor"/></svg>`;
+            copyBtn.innerHTML = `<svg 
+            width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 4H8C6.9 4 6 4.9 6 6V7H8V6H16V18H8V17H6V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V6C18 4.9 17.1 4 16 4Z" fill="currentColor"/>
+            <path d="M9 8H14C14.55 8 15 8.45 15 9V19C15 19.55 14.55 20 14 20H9C8.45 20 8 19.55 8 19V9C8 8.45 8.45 8 9 8Z" fill="currentColor"/>
+            </svg>`;
+            error.innerText = '';
         }, 2000);
     } catch (err) {
         error.innerText = 'Failed to copy. (browser denied clipboard access)';
@@ -139,4 +145,4 @@ async function copySummary() {
     }
 
 }
-
+    
